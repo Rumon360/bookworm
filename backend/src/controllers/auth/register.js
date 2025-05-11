@@ -5,6 +5,8 @@ import {
   validateUsername,
 } from "../../validators/index.js";
 
+import { generateToken } from "../../lib/token.js";
+
 export const register = async (req, res) => {
   try {
     const { username, email, password } = req.body;
