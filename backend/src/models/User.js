@@ -1,5 +1,8 @@
 import mongoose from "mongoose";
 
+import bcrpyt from "bcryptjs";
+import { validateEmail } from "../validators/index.js";
+
 const userSchema = new mongoose.Schema({
   username: {
     type: String,
@@ -35,6 +38,16 @@ const userSchema = new mongoose.Schema({
     type: String,
     default: "https://placehold.co/98x98",
   },
+});
+
+// hash password before saving to database
+userSchema.pre("save", async function (next) {
+  if (!this.isModified("password")) return next();
+
+  const salt = await bcrpyt.genSalt(10);
+  this.password = await bcrpyt.hash(this.password, salt);
+
+  next();
 });
 
 const User = mongoose.model("User", userSchema);
