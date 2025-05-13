@@ -9,5 +9,6 @@ const router = express.Router();
 router.post("/", protectRoute, createPost);
 router.get("/", protectRoute, getPosts);
 router.delete("/:id", protectRoute, deletePost);
+router.delete("/user", protectRoute, recommendationPosts);
 
 export default router;
