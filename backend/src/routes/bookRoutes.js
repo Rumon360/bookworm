@@ -3,6 +3,7 @@ import { createPost } from "../controllers/books/create.js";
 import protectRoute from "../middleware/auth.middleware.js";
 import { getPosts } from "../controllers/books/fetch.js";
 import { deletePost } from "../controllers/books/delete.js";
+import { recommendationPosts } from "../controllers/books/recommendation.js";
 
 const router = express.Router();
 
