@@ -20,9 +20,7 @@ export const createPost = async (req, res) => {
       });
     }
 
-    const upload = await cloudinary.uploader.upload(image, {
-      folder: "book_images",
-    });
+    const upload = await cloudinary.uploader.upload(image);
     const imageUrl = upload.secure_url;
 
     const newBook = new Book({
