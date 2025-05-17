@@ -1,4 +1,4 @@
-import { StyleSheet, View } from "react-native";
+import { KeyboardAvoidingView, Platform, StyleSheet, View } from "react-native";
 import React from "react";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Colors from "@/constants/colors";
@@ -12,7 +12,12 @@ const SafeScreen = ({ children }: Props) => {
 
   return (
     <View style={[styles.container, { paddingTop: insets.top }]}>
-      {children}
+      <KeyboardAvoidingView
+        style={{ flex: 1 }}
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
+      >
+        {children}
+      </KeyboardAvoidingView>
     </View>
   );
 };
